@@ -24,6 +24,7 @@
   be correct. Also, the valid format defined for facts and rules is:
   Facts : fact(x1, x2, ..., xn)
   Rules :
-  rule(x1, x2, ..., xn) :- fact1(x1, ..., xn), fact2(x1, ..., xm), ..., factk (x1, ..., xl)"
+  rule(X1, X2, ..., Xn) :- fact1(X1, ..., Xn), fact2(X1, ..., Xm), ..., factk (X1, ..., Xl)
+  Consider x as lowercase characters and X as uppercase ones."
   [line]
   )

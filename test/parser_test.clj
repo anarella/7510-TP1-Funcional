@@ -13,6 +13,11 @@
 ")
 (def fact "  varon (juan). ")
 (def rule "hijo(X, Y) :- varon(X), padre(Y, X).")
+(def valid-fact-line "varon(juan).")
+(def no-dot-line "varon")
+(def valid-rule-line "hijo(X,Y):-varon(X),padre(Y,X).")
+(def invalid-rule-line "hijo(x,Y):-varon(X),padre(Y,X).")
+
 
 (deftest read-lines-empty-input-test
   (testing "Empty input returns nil"
@@ -49,3 +54,28 @@
            (is
             (= (remove-spaces rule)
                "hijo(X,Y):-varon(X),padre(Y,X)."))))
+
+(deftest check-line-syntax-valid-fact-line-test
+  (testing "Fact line with correct syntax returns true"
+           (is
+            (= (check-line-syntax valid-fact-line)
+               true))))
+
+(deftest check-line-syntax-no-dot-line-test
+  (testing "Line without dot as last character returns false"
+           (is
+            (= (check-line-syntax no-dot-line)
+               false))))
+
+(deftest check-line-syntax-valid-rule-line-test
+  (testing "Rule line with correct syntax returns true"
+           (is
+            (= (check-line-syntax valid-rule-line)
+               true))))
+
+(deftest check-line-syntax-invalid-rule-line-test
+  (testing "Rule line with a lowcase parameter returns false"
+           (is
+            (= (check-line-syntax invalid-rule-line)
+               false))))
+
