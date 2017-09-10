@@ -19,7 +19,7 @@
   )
 
 (defn read-lines
-  "Receives a string input and returns a list of the not empty lines contained
+  "Receives a string input and returns a vector of the not empty lines contained
   in it. If the string is empty, contains only whitespaces or is nil the
   function returns nil."
   [input]
@@ -88,3 +88,30 @@
       (check-rule-syntax line)
       (check-fact-syntax line)))
   )
+
+(defn check-syntax
+  "Receives a list of facts and rules and returns true if all of them are well
+  written, and false otherwise."
+  [list-of-lines]
+  (if (every? true? (map check-line-syntax list-of-lines)) true false)
+  )
+
+(defn define-facts-and-rules
+  "Receives a list of lines and after checking the syntax of each of them, returns
+  two collections containing facts and rules."
+  [lines-list]
+  (println "llegue hasta el define")
+
+  )
+
+(defn create-database
+  "Receives a string input and generates a database for a facts and rules interpreter
+  from it. If any of the lines contained on the string is invalid the function returns
+  nil."
+  [input]
+  (let [lines-list (seq (read-lines input))]
+    (if (nil? lines-list) nil
+      (if (check-syntax lines-list) (define-facts-and-rules lines-list)
+        nil)))
+  )
+
