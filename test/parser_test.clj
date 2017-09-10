@@ -11,6 +11,8 @@
   mujer(maria).
 
 ")
+(def fact "  varon (juan). ")
+(def rule "hijo(X, Y) :- varon(X), padre(Y, X).")
 
 (deftest read-lines-empty-input-test
   (testing "Empty input returns nil"
@@ -36,3 +38,14 @@
              (= (read-lines valid-input)
                 '("varon(juan).", "mujer(maria).")))))
 
+(deftest remove-spaces-fact-test
+  (testing "Fact line returns fact line without spaces"
+           (is
+            (= (remove-spaces fact)
+               "varon(juan)."))))
+
+(deftest remove-spaces-rule-test
+  (testing "Rule line returns rule line without spaces"
+           (is
+            (= (remove-spaces rule)
+               "hijo(X,Y):-varon(X),padre(Y,X)."))))

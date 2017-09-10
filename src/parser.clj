@@ -1,6 +1,12 @@
 (ns parser
   (:require [clojure.string :as str]))
 
+(defn remove-spaces
+  "Receives a string and returns it containing no spaces."
+  [string]
+  (str/replace string #"\s" "")
+  )
+
 (defn read-lines
   "Receives a string input and returns a list of the not empty lines contained
   in it. If the string is empty, contains only whitespaces or is nil the
@@ -9,8 +15,7 @@
   (if
     (str/blank? input) nil
     ;; Remove empty lines and spaces inside lines
-    (map #(str/replace % " " "")
-         (filter not-empty (str/split-lines input))))
+    (map remove-spaces (filter not-empty (str/split-lines input))))
   )
 
 (defn check-line-syntax
