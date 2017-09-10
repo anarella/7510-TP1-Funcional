@@ -14,9 +14,9 @@
 (def fact "  varon (juan). ")
 (def rule "hijo(X, Y) :- varon(X), padre(Y, X).")
 (def valid-fact-line "varon(juan).")
+(def invalid-fact-line "varon.")
 (def no-dot-line "varon")
 (def valid-rule-line "hijo(X,Y):-varon(X),padre(Y,X).")
-(def invalid-rule-line "hijo(x,Y):-varon(X),padre(Y,X).")
 
 
 (deftest read-lines-empty-input-test
@@ -73,9 +73,21 @@
             (= (check-line-syntax valid-rule-line)
                true))))
 
-(deftest check-line-syntax-invalid-rule-line-test
-  (testing "Rule line with a lowcase parameter returns false"
+(deftest check-fact-syntax-valid-fact-test
+  (testing "Fact with correct syntax returns true"
            (is
-            (= (check-line-syntax invalid-rule-line)
+            (= (check-fact-syntax valid-fact-line)
+               true))))
+
+(deftest check-fact-syntax-invalid-fact-test
+  (testing "Fact without parameters returns false"
+           (is
+            (= (check-fact-syntax invalid-fact-line)
                false))))
+
+(deftest check-rule-syntax-valid-rule-test
+  (testing "Rule with correct syntax returns true"
+           (is
+            (= (check-rule-syntax valid-rule-line)
+               true))))
 
