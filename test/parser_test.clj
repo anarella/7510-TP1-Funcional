@@ -5,32 +5,34 @@
 (def empty-input "")
 (def blank-input "       ")
 (def nil-input nil)
-(def valid-input
-  "
- varon(juan).
- mujer(maria).
- ")
+(def valid-input "
+  varon(juan).
 
-(deftest empty-input-test
+  mujer(maria).
+
+")
+
+(deftest read-lines-empty-input-test
   (testing "Empty input returns nil"
            (is
              (= (read-lines empty-input)
                 nil))))
 
-(deftest blank-input-test
+(deftest read-lines-blank-input-test
   (testing "Blank input returns nil"
            (is
              (= (read-lines blank-input)
                 nil))))
 
-(deftest nil-input-test
+(deftest read-lines-input-test
   (testing "nil input returns nil"
            (is
              (= (read-lines nil-input)
                 nil))))
 
-(deftest valid-input-test
+(deftest read-lines-valid-input-test
   (testing "Valid input returns list of lines"
            (is
              (= (read-lines valid-input)
                 '("varon(juan).", "mujer(maria).")))))
+
