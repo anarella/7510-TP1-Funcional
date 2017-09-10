@@ -1,10 +1,13 @@
 (ns parser
   (:require [clojure.string :as str]))
 
+(def space_character #"\s")
+(def dot_character ".")
+
 (defn remove-spaces
   "Receives a string and returns it containing no spaces."
   [string]
-  (str/replace string #"\s" "")
+  (str/replace string space_character "")
   )
 
 (defn read-lines
@@ -27,4 +30,9 @@
   rule(X1, X2, ..., Xn) :- fact1(X1, ..., Xn), fact2(X1, ..., Xm), ..., factk (X1, ..., Xl)
   Consider x as lowercase characters and X as uppercase ones."
   [line]
+  (if
+    (not (str/ends-with? line dot_character)) false
+
+    true)
+
   )
